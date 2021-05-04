@@ -64,6 +64,17 @@ const failure_buffer_html = `<div class="buffer">
 <h3>You failed to recalled last sequence perfectly</h3>
 <h3>Proceeding to next component ...</h3>
 </div>`
+const instructionpage_html = `<div class="instructions">
+<h1>Instructions</h1>
+<ul>
+    <li>This experiment consists of two components</li>
+    <li>In each component the objective is to determine the max length of a sequence of digits that you can recall.</li>
+    <li>You will be shown sequences of length starting from 3 and increasing till you fail to recall it accurately.</li>
+    <li>For each sequence, the digits will be shown one by one and at the end a numeric keypad is provided.</li>
+    <li>Enter the digits in the order they appeared in the sequence and click done.</li>
+</ul>
+<button id="next_btn2" onclick="main()">Start Experiment</button>
+</div>`
 
 var status = 1;
 var input_sequence = [];
@@ -134,15 +145,20 @@ function input(key) {
     }
 }
 
-
+function premain() {
+    subject_name = document.getElementById("name_input").value;
+    subject_age = document.getElementById("age_input").value;
+    subject_cb = document.getElementById("cb_input").value;
+    console.log(subject_name);
+    console.log(subject_age);
+    console.log(subject_cb);
+    body = document.getElementsByTagName("body")[0];
+    body.innerHTML = instructionpage_html;
+}
 async function main() {
-    subject_name = document.getElementById("name_input").value
-    subject_age = document.getElementById("age_input").value
-    subject_cb = document.getElementById("cb_input").value
-    console.log(subject_name)
-    console.log(subject_age)
-    console.log(subject_cb)
     body = document.getElementsByTagName("body")[0]
+    body.innerHTML = ""
+    await sleep(500);
     for(s_index=0;s_index<bw_sequences.length;s_index+=1) {
         console.log('start iteration:'+ (s_index).toString());
         current_sequence = bw_sequences[s_index];
