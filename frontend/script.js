@@ -16,7 +16,7 @@ const colour_sequences = [
     [7,4,6,8,0,5,1],
     [8,4,7,3,0,2,5,7]
 ];
-const exp_test_html = `<div id="exp-test">
+const bw_exp_test_html = `<div id="exp-test">
 <div id="preview"></div>
 <div id="keypad">
     <div id="key1" onclick="input(1)">1</div>
@@ -33,6 +33,37 @@ const exp_test_html = `<div id="exp-test">
     <div id="key_done" onclick="input('done')" class="textbtn">done</div>
 </div>
 </div>`;
+const colour_exp_test_html = `<div id="exp-test">
+<div id="preview"></div>
+<div id="keypad">
+    <div id="key1" class="c1"onclick="input(1)">1</div>
+    <div id="key2" class="c2"onclick="input(2)">2</div>
+    <div id="key3" class="c3"onclick="input(3)">3</div>
+    <div id="key4" class="c4"onclick="input(4)">4</div>
+    <div id="key5" class="c5"onclick="input(5)">5</div>
+    <div id="key6" class="c6"onclick="input(6)">6</div>
+    <div id="key7" class="c7"onclick="input(7)">7</div>
+    <div id="key8" class="c8"onclick="input(8)">8</div>
+    <div id="key9" class="c9"onclick="input(9)">9</div>
+    <div id="key_clear" onclick="input('clear')" class="textbtn">clear</div>
+    <div id="key0" class="c0" onclick="input(0)">0</div>
+    <div id="key_done" onclick="input('done')" class="textbtn">done</div>
+</div>
+</div>`;
+const endpage_html = `<div class="endpage">
+<h1>Thank you for participating!</h1>
+<h1>Have a nice day!</h1>
+</div>`
+const success_buffer_html = `<div class="buffer">
+<h2>Congratulations!</h2>
+<h3>You recalled last sequence perfectly</h3>
+<h3>Proceeding to next sequence ...</h3>
+</div>`
+const failure_buffer_html = `<div class="buffer">
+<h2>Incorrect!</h2>
+<h3>You failed to recalled last sequence perfectly</h3>
+<h3>Proceeding to next component ...</h3>
+</div>`
 
 var status = 1;
 var input_sequence = [];
@@ -44,6 +75,7 @@ var subject_age;
 var subject_cb;
 var bw_recall;
 var colour_recall;
+
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -102,6 +134,7 @@ function input(key) {
     }
 }
 
+
 async function main() {
     subject_name = document.getElementById("name_input").value
     subject_age = document.getElementById("age_input").value
@@ -117,7 +150,7 @@ async function main() {
         var disp = document.getElementById("exp-display");
         await display(disp,current_sequence, false);
         status = 0;
-        body.innerHTML = exp_test_html;
+        body.innerHTML = bw_exp_test_html;
         while(status == 0) {
             console.log('testing');
             await sleep(500);
@@ -128,8 +161,14 @@ async function main() {
             bw_recall = s_index+2;
             break;
         }
+        body.innerHTML = success_buffer_html;
+        await sleep(2000)
+        body.innerHTML = ""
+        await sleep(1000)
         console.log('end iteration:'+ (s_index).toString());
     }
+    body.innerHTML = failure_buffer_html;
+    await sleep(2500);
     for(s_index=0;s_index<colour_sequences.length;s_index+=1) {
         console.log('start iteration:'+ (s_index).toString());
         current_sequence = colour_sequences[s_index];
@@ -137,7 +176,7 @@ async function main() {
         var disp = document.getElementById("exp-display");
         await display(disp,current_sequence, true);
         status = 0;
-        body.innerHTML = exp_test_html;
+        body.innerHTML = colour_exp_test_html;
         while(status == 0) {
             console.log('testing');
             await sleep(500);
@@ -148,8 +187,13 @@ async function main() {
             colour_recall = s_index+2;
             break;
         }
+        body.innerHTML = success_buffer_html;
+        await sleep(2000)
+        body.innerHTML = ""
+        await sleep(1000)
         console.log('end iteration:'+ (s_index).toString());
     }
+    body.innerHTML = endpage_html;
     console.log('bw recall:'+(bw_recall).toString());
     console.log('colour recall:'+(colour_recall).toString());
     console.log("finished");

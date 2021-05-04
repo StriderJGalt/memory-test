@@ -121,3 +121,13 @@ html, body, div {
     margin-top: 8px;
     margin-bottom: 32px;
 }
+
+.endpage,.buffer{
+    width: 70%;
+    height: 90%;
+    margin: 32px auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
