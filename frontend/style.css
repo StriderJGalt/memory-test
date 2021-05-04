@@ -1,0 +1,123 @@
+html, body, div {
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+#exp-display {
+    width: 100%;
+    height: 100%;
+    font-size: 96px;
+    text-align: center;
+    line-height: 100vh;
+    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(41, 41, 41); */
+}
+
+.white {
+    color: rgb(0, 0, 0);
+}
+
+.c0 {
+    color: red;
+}
+
+.c1 {
+    color: yellow;
+}
+
+.c2 {
+    color: lime;
+}
+
+.c3 {
+    color: aqua;
+}
+
+.c4 {
+    color: fuchsia;
+}
+
+.c5 {
+    color: blue;
+}
+
+.c6 {
+    color: navajowhite;
+}
+
+.c7 {
+    color: forestgreen;
+}
+
+.c8 {
+    color: orange;
+}
+
+.c9 {
+    color: maroon;
+}
+
+#exp-test{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+#preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    width: 100%;
+    max-width: 500px;
+    height: 150px;
+    font-size: 38px;
+    /* background-color: ghostwhite; */
+}
+#keypad {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+    /* background-color: ghostwhite;  */
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(4,1fr);
+}
+
+#keypad > div {
+    /* border: 1px solid rgb(219, 219, 219); */
+    /* background-color: rgb(219, 157, 157); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 42px;
+}
+
+#keypad > .textbtn {
+    font-size: 32px;
+}
+
+.startpage {
+    width: 70%;
+    margin: 32px auto;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+
+.startpage > input {
+    margin-top: 8px;
+    margin-bottom: 32px;
+}
