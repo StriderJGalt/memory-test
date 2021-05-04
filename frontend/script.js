@@ -73,7 +73,7 @@ const instructionpage_html = `<div class="instructions">
     <li>For each sequence, the digits will be shown one by one and at the end a numeric keypad is provided.</li>
     <li>Enter the digits in the order they appeared in the sequence and click done.</li>
 </ul>
-<button id="next_btn2" onclick="main()">Start Experiment</button>
+<button class="btn btn-light" id="next_btn2" onclick="main()">Start Experiment</button>
 </div>`
 
 var status = 1;
