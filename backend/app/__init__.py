@@ -6,6 +6,9 @@ app = Flask(__name__)
 @app.route('/save',  methods=["POST"])
 def save():
     name = request.form["name"]
-    seq1 = request.form["seq1"]
-    seq2 = request.form["seq2"]
+    age = request.form["age"]
+    cb = request.form["cb"]
+    bw = request.form["bw"]
+    cw = request.form["cw"]
+    print(name,age,cb,bw,cw)
     return {"status":"ok"}
