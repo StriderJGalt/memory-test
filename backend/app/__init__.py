@@ -14,7 +14,7 @@ def save():
     bw = request.form["bw"]
     cw = request.form["cw"]
     print(name,age,cb,bw,cw)
-    writestring = name + ", " + age + ", " + cb + ", " + bw + ", " + cw + "\n"
+    writestring = request.remote_addr + ", " + name + ", " + age + ", " + cb + ", " + bw + ", " + cw + "\n"
     fileName = "data.csv"
     with open(fileName, 'a') as f:
         f.write(writestring)
