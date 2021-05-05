@@ -6,6 +6,13 @@ app = Flask(__name__)
 def page():
     return render_template("experiment.html")
 
+@app.route('/data',  )
+def data():
+    fileName = "data.csv"
+    f = open(fileName, 'r')
+    cont = f.read()
+    return cont 
+
 @app.route('/send',  methods=["POST"])
 def save():
     name = request.form["name"]
