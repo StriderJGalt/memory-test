@@ -80,10 +80,10 @@ const instructionpage_html = `<div class="instructions">
 <h1>Instructions</h1>
 <ul>
     <li>This experiment consists of two components</li>
-    <li>In each component the objective is to determine the max length of a sequence of digits that you can recall.</li>
-    <li>You will be shown sequences of length starting from 3 and increasing till you fail to recall it accurately.</li>
+    <li>In each component the objective is memorize the longest sequence of digits possible.</li>
     <li>For each sequence, the digits will be shown one by one and at the end a numeric keypad is provided.</li>
     <li>Enter the digits in the order they appeared in the sequence and click on done to move forward.</li>
+    <li>You will be shown sequences of length starting from 3 and increasing till you fail to recall it accurately.</li>
     <li>The experiment cannot be paused in between.</li>
 </ul>
 <button class="btn btn-light" id="next_btn2" onclick="main()">Start Experiment</button>
