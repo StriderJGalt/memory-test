@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template,request
+from flask import Flask, jsonify, render_template,request, send_from_directory
 
 app = Flask(__name__)
 
@@ -9,9 +9,7 @@ def page():
 @app.route('/data',  )
 def data():
     fileName = "data.csv"
-    f = open(fileName, 'r')
-    cont = f.read()
-    return cont 
+    return send_from_directory('../', fileName)
 
 @app.route('/send',  methods=["POST"])
 def save():
