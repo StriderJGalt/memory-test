@@ -71,7 +71,8 @@ const instructionpage_html = `<div class="instructions">
     <li>In each component the objective is to determine the max length of a sequence of digits that you can recall.</li>
     <li>You will be shown sequences of length starting from 3 and increasing till you fail to recall it accurately.</li>
     <li>For each sequence, the digits will be shown one by one and at the end a numeric keypad is provided.</li>
-    <li>Enter the digits in the order they appeared in the sequence and click done.</li>
+    <li>Enter the digits in the order they appeared in the sequence and click on done to move forward.</li>
+    <li>The experiment cannot be paused in between.</li>
 </ul>
 <button class="btn btn-light" id="next_btn2" onclick="main()">Start Experiment</button>
 </div>`
@@ -213,5 +214,25 @@ async function main() {
     console.log('bw recall:'+(bw_recall).toString());
     console.log('colour recall:'+(colour_recall).toString());
     console.log("finished");
+	send_data();
     
+}
+
+function send_data() { 
+	$.ajax('http://0.0.0.0:8000/send', {
+    type: 'POST',
+    data: { 
+		name: subject_name,
+		age: subject_age,
+		cb: subject_cb,
+		bw: bw_recall,
+		cw: colour_recall,
+	},
+    success: function (data, status, xhr) {
+        $('#status').append("Data saved");
+    },
+    error: function (jqXhr, textStatus, errorMessage) {
+		$('#status').append('Error saving data');
+    }
+});
 }
