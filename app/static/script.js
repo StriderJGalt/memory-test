@@ -29,7 +29,7 @@ const colour_sequences = [
 	[6,4,1,8,6,2,7,1,4,3,0,1,1,6]
 ];
 const bw_exp_test_html = `<div id="exp-test">
-<div id="preview"></div>
+<div id="preview"><div id="preview_sequence"></div></div>
 <div id="keypad">
     <div id="key1" onclick="input(1)">1</div>
     <div id="key2" onclick="input(2)">2</div>
@@ -46,19 +46,19 @@ const bw_exp_test_html = `<div id="exp-test">
 </div>
 </div>`;
 const colour_exp_test_html = `<div id="exp-test">
-<div id="preview"></div>
+<div id="preview"><div id="preview_sequence"></div></div>
 <div id="keypad">
-    <div id="key1" class="c1"onclick="input(1)">1</div>
-    <div id="key2" class="c2"onclick="input(2)">2</div>
-    <div id="key3" class="c3"onclick="input(3)">3</div>
-    <div id="key4" class="c4"onclick="input(4)">4</div>
-    <div id="key5" class="c5"onclick="input(5)">5</div>
-    <div id="key6" class="c6"onclick="input(6)">6</div>
-    <div id="key7" class="c7"onclick="input(7)">7</div>
-    <div id="key8" class="c8"onclick="input(8)">8</div>
-    <div id="key9" class="c9"onclick="input(9)">9</div>
+    <div id="key1" class="c1"onclick="input(1,true)">1</div>
+    <div id="key2" class="c2"onclick="input(2,true)">2</div>
+    <div id="key3" class="c3"onclick="input(3,true)">3</div>
+    <div id="key4" class="c4"onclick="input(4,true)">4</div>
+    <div id="key5" class="c5"onclick="input(5,true)">5</div>
+    <div id="key6" class="c6"onclick="input(6,true)">6</div>
+    <div id="key7" class="c7"onclick="input(7,true)">7</div>
+    <div id="key8" class="c8"onclick="input(8,true)">8</div>
+    <div id="key9" class="c9"onclick="input(9,true)">9</div>
     <div id="key_clear" onclick="input('clear')" class="textbtn">clear</div>
-    <div id="key0" class="c0" onclick="input(0)">0</div>
+    <div id="key0" class="c0" onclick="input(0,true)">0</div>
     <div id="key_done" onclick="input('done')" class="textbtn">done</div>
 </div>
 </div>`;
@@ -133,8 +133,8 @@ async function display(disp,sequence,colour) {
 }
 
 
-function input(key) {
-    var p = document.getElementById("preview")
+function input(key,colour) {
+    var p = document.getElementById("preview_sequence")
     if (key == 'clear') {
         p.innerText = "";
         input_sequence = [];
@@ -153,7 +153,16 @@ function input(key) {
         }
         else {
             input_sequence.push(key);
-            p.innerText = input_sequence.join(" ");
+            // var preview_sequence = "";
+            // for (digit in input_sequence) {
+                // preview_sequence += '<span class="c' + digit.toString() + '">' + digit.toString() + '</span>';
+            // }
+            if (colour){
+                p.innerHTML += '<span class="c' + key.toString() + '">' + key.toString() + '</span> ';
+            }
+            else {
+                p.innerText = input_sequence.join(" ");
+            }
         }
     }
 }
